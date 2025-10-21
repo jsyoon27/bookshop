@@ -15,18 +15,19 @@ const allBooks = (req, res) => {
     let values = [];
 
     if (category_id && news) {
-        sql += "WHERE category_id = ? AND pub_date BETWEEN DATE_SUB(NOW(),INTERVAL 1 MONTH) AND NOW();";
-        values = values.push(category_id);
+        sql += " WHERE category_id = ? AND pub_date BETWEEN DATE_SUB(NOW(),INTERVAL 1 MONTH) AND NOW()";
+        values = [category_id];
     }
     else if(category_id){
-        sql += "WHERE category_id = ?";
-        values = values.push(category_id);
+        sql += " WHERE category_id = ?";
+        values = [category_id];;
     } 
     else if (news) {
-        sql += " WHERE pub_date BETWEEN DATE_SUB(NOW(),INTERVAL 1 MONTH) AND NOW();";
+        sql += " WHERE pub_date BETWEEN DATE_SUB(NOW(),INTERVAL 1 MONTH) AND NOW()";
     }
-
-    sql += " LIMIT ? OFFSET ?;";
+    
+    sql += " LIMIT ? OFFSET ?";
+    values.push(parseInt(limit), offset);
 
     conn.query(sql,values,
         (err, results) => {
