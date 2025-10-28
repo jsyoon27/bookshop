@@ -67,6 +67,7 @@ DELETE FROM cartItems WHERE id = ?;
 // 장바구니에서 선택한(장바구니 도서 id) 아이템 목록 조회 (=선택한 장바구니 상품 목록 조회)
 SELECT * FROM Bookshop.cartItems WHERE user_id=1 AND id IN (1,3)
 
+//SELECT count(*) FROM likes WHERE liked_book_id=1;
 
 // 주문하기
 // 배송 정보 입력
